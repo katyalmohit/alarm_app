@@ -67,7 +67,7 @@ class _AlarmHomeScreenState extends State<AlarmHomeScreen> {
               }
             },
             padding: EdgeInsets.zero,
-            iconSize: 18,
+            iconSize: 12,
             // Make the popup menu smaller
             itemBuilder: (BuildContext context) {
               return <PopupMenuEntry<String>>[
@@ -102,89 +102,110 @@ class _AlarmHomeScreenState extends State<AlarmHomeScreen> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton.small(
-        backgroundColor: Colors.green,
-        child: const Icon(
-          Icons.add,
-          color: Colors.black,
-          size: 16,
-        ),
-        onPressed: _addAlarm,
-      ),
+      // floatingActionButton: FloatingActionButton.small(
+      //   backgroundColor: Colors.green,
+      //   child: const Icon(
+      //     Icons.add,
+      //     color: Colors.black,
+      //     size: 16,
+      //   ),
+      //   onPressed: _addAlarm,
+      // ),
 
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
-        child: Column(
-          children: [
-            Expanded(
-              child: alarms.isEmpty
-                  ? Center(
-                      child: Text(
-                        'No alarms yet',
-                        style: TextStyle(color: Colors.white54, fontSize: 14),
-                      ),
-                    )
-                  : ListView.builder(
-                      itemCount: alarms.length,
-                      itemBuilder: (context, index) {
-                        final alarm = alarms[index];
-                        return Container(
-                          margin: const EdgeInsets.symmetric(vertical: 6),
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 10,
-                            vertical: 10,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.grey[900],
-                            borderRadius: BorderRadius.circular(14),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    alarm['time'],
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      color:
-                                          alarm['enabled']
-                                              ? Colors.white
-                                              : Colors.grey[600],
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                  Text(
-                                    'Alarm',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color:
-                                          alarm['enabled']
-                                              ? Colors.white70
-                                              : Colors.grey[600],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Switch(
-                                value: alarm['enabled'],
-                                onChanged: (value) {
-                                  setState(() {
-                                    alarms[index]['enabled'] = value;
-                                  });
-                                },
-                                activeColor: Colors.greenAccent,
-                              ),
-                            ],
-                          ),
-                        );
-                      },
+      body: Stack(
+  children: [
+    Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
+      child: Column(
+        children: [
+          Expanded(
+            child: alarms.isEmpty
+                ? Center(
+                    child: Text(
+                      'No alarms yet',
+                      style: TextStyle(color: Colors.white54, fontSize: 14),
                     ),
-            ),
-          ],
+                  )
+                : ListView.builder(
+                    itemCount: alarms.length,
+                    itemBuilder: (context, index) {
+                      final alarm = alarms[index];
+                      return Container(
+                        margin: const EdgeInsets.symmetric(vertical: 6),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 10,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[900],
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  alarm['time'],
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: alarm['enabled']
+                                        ? Colors.white
+                                        : Colors.grey[600],
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                Text(
+                                  'Alarm',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: alarm['enabled']
+                                        ? Colors.white70
+                                        : Colors.grey[600],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Switch(
+                              value: alarm['enabled'],
+                              onChanged: (value) {
+                                setState(() {
+                                  alarms[index]['enabled'] = value;
+                                });
+                              },
+                              activeColor: Colors.greenAccent,
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+          ),
+        ],
+      ),
+    ),
+    // Tiny FAB pinned to bottom-right
+    Positioned(
+      bottom: 8,
+      right: 8,
+      child: SizedBox(
+        width: 36,
+        height: 36,
+        child: FloatingActionButton(
+          backgroundColor: Colors.green,
+          elevation: 2,
+          onPressed: _addAlarm,
+          child: const Icon(
+            Icons.add,
+            color: Colors.black,
+            size: 16,
+          ),
         ),
       ),
+    ),
+  ],
+)
     );
   }
 }

@@ -16,7 +16,7 @@ class _SetAlarmScreenState extends State<SetAlarmScreen> {
       context: context,
       initialTime: selectedTime,
     );
-    
+
     if (picked != null) {
       setState(() => selectedTime = picked);
     }
@@ -27,32 +27,30 @@ class _SetAlarmScreenState extends State<SetAlarmScreen> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
-        child: SingleChildScrollView(
-          // ensures it scrolls when space is tight
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 16),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text(
                 'Set Alarm',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
-              const SizedBox(height: 20),
               GestureDetector(
                 onTap: _pickTime,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                   decoration: BoxDecoration(
                     color: Colors.grey[850],
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(10),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black54,
-                        blurRadius: 3,
+                        color: Colors.black45,
+                        blurRadius: 2,
                         offset: Offset(0, 1),
                       )
                     ],
@@ -60,26 +58,24 @@ class _SetAlarmScreenState extends State<SetAlarmScreen> {
                   child: Text(
                     selectedTime.format(context),
                     style: const TextStyle(
-                      fontSize: 26,
+                      fontSize: 22,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
-                      letterSpacing: 1,
                     ),
                   ),
                 ),
               ),
-              const SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () => Navigator.pop(context),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
                   foregroundColor: Colors.black,
-                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+                  padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 6),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(8),
                   ),
                 ),
-                child: const Text('Save', style: TextStyle(fontSize: 12)),
+                child: const Text('Save', style: TextStyle(fontSize: 10)),
               )
             ],
           ),

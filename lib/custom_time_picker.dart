@@ -15,7 +15,7 @@ class CustomTimePicker {
             // Reduce the size of the dialog
             dialogTheme: DialogTheme(
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(2),
               ),
               contentTextStyle: TextStyle(fontSize: 10),
             ),
@@ -33,11 +33,11 @@ class CustomTimePicker {
                 fontSize: 8,
               ),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(2),
               ),
               hourMinuteShape: CircleBorder(),
               dayPeriodShape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(6),
+                borderRadius: BorderRadius.circular(2),
               ),
               dayPeriodBorderSide: BorderSide(width: 1),
               hourMinuteColor: Colors.grey[850],
@@ -54,8 +54,8 @@ class CustomTimePicker {
               size: Size(180, 180),
             ),
             child: Container(
-              height: 180,
-              width: 180,
+              height: 10,
+              width: 10,
               child: child!,
             ),
           ),
